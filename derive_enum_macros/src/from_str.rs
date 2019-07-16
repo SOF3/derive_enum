@@ -1,4 +1,4 @@
-// signed-vimrc
+// derive-enum
 //
 // Copyright (C) 2019 chankyin
 // 
@@ -49,7 +49,7 @@ pub fn derive(input: syn::DeriveInput) -> proc_macro2::TokenStream {
             quote! { #variant_str => Ok(#enum_name::#ident #fields) }
         });
 
-    let ret = quote! {
+    quote! {
         impl std::str::FromStr for #enum_name {
             type Err = ::derive_enum::Error;
 
@@ -60,6 +60,5 @@ pub fn derive(input: syn::DeriveInput) -> proc_macro2::TokenStream {
                 }
             }
         }
-    };
-    ret
+    }
 }

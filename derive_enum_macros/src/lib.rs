@@ -1,4 +1,4 @@
-// signed-vimrc
+// derive-enum
 //
 // Copyright (C) 2019 chankyin
 // 

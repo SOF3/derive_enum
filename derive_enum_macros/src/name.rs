@@ -1,4 +1,4 @@
-// signed-vimrc
+// derive-enum
 //
 // Copyright (C) 2019 chankyin
 // 
@@ -32,7 +32,7 @@ pub fn derive(input: syn::DeriveInput) -> proc_macro2::TokenStream {
         });
 
     quote! {
-        impl #enum_name {
+        impl ::derive_enum::Name for #enum_name {
             fn name(&self) -> &'static str {
                 match self {
                     #(#cases),*

@@ -1,4 +1,4 @@
-// signed-vimrc
+// derive-enum
 //
 // Copyright (C) 2019 chankyin
 // 
@@ -17,6 +17,11 @@
 use derive_enum_macros as macros;
 
 #[cfg(feature = "name")] pub use macros::Name;
+#[cfg(feature = "name")]
+pub trait Name {
+    fn name(&self) -> &'static str;
+}
+
 #[cfg(feature = "from_str")] pub use macros::FromStr;
 
 #[derive(Debug)]

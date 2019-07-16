@@ -23,6 +23,8 @@ enum Foo {
 
 #[test]
 fn test_names() {
+    use derive_enum::Name;
+
     assert_eq!(Foo::Bar.name(), "Bar");
     assert_eq!(Foo::Qux.name(), "Qux");
     assert_eq!(Foo::Corge.name(), "Corge");
