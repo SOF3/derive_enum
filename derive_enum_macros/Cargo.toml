@@ -1,0 +1,20 @@
+[package]
+name = "derive_enum_macros"
+version = "0.1.0"
+authors = ["chankyin <chankyin1970@gmail.com>"]
+edition = "2018"
+license = "Apache-2.0"
+description = "Codegen for derive_enum"
+
+[lib]
+proc-macro = true
+
+[features]
+default = []
+name = []
+from_str = []
+
+[dependencies]
+proc-macro2 = "0.4"
+quote = "0.6"
+syn = {version = "0.15", features = ["derive", "parsing", "proc-macro"]}

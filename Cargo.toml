@@ -1,0 +1,5 @@
+[workspace]
+members = [
+	"derive_enum",
+	"derive_enum_macros",
+]
