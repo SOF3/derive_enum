@@ -13,6 +13,7 @@ proc-macro = true
 default = []
 name = []
 from_str = []
+iter = []
 
 [dependencies]
 proc-macro2 = "0.4"

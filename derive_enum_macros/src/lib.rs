@@ -31,3 +31,4 @@ macro_rules! derive {
 
 derive!("name": Name, derive_name -> name);
 derive!("from_str": FromStr, derive_from_str -> from_str);
+derive!("iter": Iter, derive_iter -> iter);

@@ -9,9 +9,10 @@ repository = "https://github.com/chankyin/derive_enum.git"
 homepage = "https://github.com/chankyin/derive_enum"
 
 [features]
-default = ["name", "from_str"]
+default = ["name", "from_str", "iter"]
 name = ["derive_enum_macros", "derive_enum_macros/name"]
 from_str = ["derive_enum_macros", "derive_enum_macros/from_str"]
+iter = ["derive_enum_macros", "derive_enum_macros/iter"]
 
 [dependencies]
 derive_enum_macros = {version = "0.2", path = "../derive_enum_macros", optional = true}

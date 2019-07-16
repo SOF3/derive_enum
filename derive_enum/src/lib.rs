@@ -24,6 +24,12 @@ pub trait Name {
 
 #[cfg(feature = "from_str")] pub use macros::FromStr;
 
+#[cfg(feature = "iter")] pub use macros::Iter;
+#[cfg(feature = "iter")]
+pub trait Iter {
+    fn all() -> Box<dyn Iterator<Item = (&'static str, Self)>>;
+}
+
 #[derive(Debug)]
 pub enum Error {
     NoSuchEnum,
