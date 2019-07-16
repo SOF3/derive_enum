@@ -5,6 +5,8 @@ authors = ["chankyin <chankyin1970@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"
 description = "Codegen for derive_enum"
+repository = "https://github.com/chankyin/derive_enum.git"
+homepage = "https://github.com/chankyin/derive_enum"
 
 [lib]
 proc-macro = true

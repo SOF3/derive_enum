@@ -1,12 +1,17 @@
 [package]
 name = "derive_enum"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["chankyin <chankyin1970@gmail.com>"]
 edition = "2018"
 license = "Apache-2.0"
 description = "Enum derive macros for Rust 2018"
 repository = "https://github.com/chankyin/derive_enum.git"
 homepage = "https://github.com/chankyin/derive_enum"
+categories = ["development-tools"]
+
+[badges]
+travis-ci = {repository = "chankyin/derive_enum"}
+codecov = {repository = "chankyin/derive_enum"}
 
 [features]
 default = ["name", "from_str", "iter"]
