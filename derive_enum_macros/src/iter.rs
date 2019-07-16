@@ -50,20 +50,20 @@ pub fn derive(input: syn::DeriveInput) -> proc_macro2::TokenStream {
             };
             i += 1;
             let ord = Literal::u32_suffixed(i);
-            quote! { #ord => Some((#variant_name, #enum_name::#ident #fields)) }
+            quote! { #ord => Some((#variant_name, &|| #enum_name::#ident #fields)) }
         });
 
     let iter_name = Ident::new(&format!("{}AllIter", enum_name.to_string()), Span::call_site());
 
     quote! {
         impl ::derive_enum::Iter for #enum_name {
-            fn all() -> Box<dyn Iterator<Item = (&'static str, #enum_name)>> { Box::new(#iter_name(0)) }
+            fn all() -> Box<dyn Iterator<Item = (&'static str, &'static dyn Fn() -> Self)>> { Box::new(#iter_name(0)) }
         }
 
         struct #iter_name(u32);
 
         impl ::std::iter::Iterator for #iter_name {
-            type Item = (&'static str, #enum_name);
+            type Item = (&'static str, &'static dyn Fn() -> #enum_name);
 
             fn next(&mut self) -> Option<Self::Item> {
                 self.0 += 1;

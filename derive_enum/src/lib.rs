@@ -27,7 +27,7 @@ pub trait Name {
 #[cfg(feature = "iter")] pub use macros::Iter;
 #[cfg(feature = "iter")]
 pub trait Iter {
-    fn all() -> Box<dyn Iterator<Item = (&'static str, Self)>>;
+    fn all() -> Box<dyn Iterator<Item = (&'static str, &'static dyn Fn() -> Self)>>;
 }
 
 #[derive(Debug)]

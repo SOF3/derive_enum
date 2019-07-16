@@ -31,7 +31,7 @@ fn test() {
     use derive_enum::Iter;
 
     let iter = Foo::all();
-    let vec = iter.collect::<Vec<_>>();
+    let vec = iter.map(|(name, f)| (name, f())).collect::<Vec<_>>();
     assert_eq!(vec, vec![
                ("Bar", Foo::Bar),
                ("Qux", Foo::Qux(0i32)),
