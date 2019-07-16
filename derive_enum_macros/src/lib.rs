@@ -17,18 +17,42 @@
 extern crate proc_macro;
 
 macro_rules! decl_derive {
-    ($feature: literal: $name: ident, $fn: ident -> $mod: ident) => {
+    ($feature: literal: $name: ident, $fn: ident -> $mod: ident | $doc: literal) => {
         #[cfg(feature = $feature)]
         mod $mod;
         
         #[cfg(feature = $feature)]
         #[proc_macro_derive($name)]
+        #[doc = $doc]
         pub fn $fn(item: proc_macro::TokenStream) -> proc_macro::TokenStream {
             From::from($mod::derive(syn::parse(item).unwrap()))
         }
     }
 }
 
-decl_derive!("name": Name, derive_name -> name);
-decl_derive!("from_str": FromStr, derive_from_str -> from_str);
-decl_derive!("iter": Iter, derive_iter -> iter);
+decl_derive!("name": Name, derive_name -> name | "
+        Provides the enum variant name given the instance.
+        
+        Requires the <em>name</em> feature.
+    ");
+
+
+decl_derive!("from_str": FromStr, derive_from_str -> from_str | "
+        Implements the FromStr trait for an enum.
+
+        The given string must be exactly the enum variant name, without parentheses, braces or
+        otherwise information on the inner fields.
+
+        A new instance of the corresponding enum variant is allocated.
+        If there are inner fields, they must all implement `Default`, and the default value of the type
+        would be returned.
+
+        Requires the <em>from_str</em> feature.
+    ");
+
+
+decl_derive!("iter": Iter, derive_iter -> iter | "
+        Implements the Iter trait for an enum.
+
+        Requires the <em>iter</em> feature.
+    ");

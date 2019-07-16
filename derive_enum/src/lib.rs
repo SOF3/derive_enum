@@ -17,21 +17,37 @@
 use derive_enum_macros as macros;
 
 #[cfg(feature = "name")] pub use macros::Name;
+
 #[cfg(feature = "name")]
 pub trait Name {
+    /// Returns the name of the enum variant.
+    ///
+    /// The result is not affected by inner fields.
     fn name(&self) -> &'static str;
 }
 
+
 #[cfg(feature = "from_str")] pub use macros::FromStr;
 
+
 #[cfg(feature = "iter")] pub use macros::Iter;
+
+/// Provides an iterator on the variants of an enum.
+///
+/// The iterator yields a tuple containing the name of the variant and a closure to create a default
+/// instance of the enum variant.
+/// The behaviour of the closure is equivalent to calling `FromStr`.
+///
+/// Requires the <em>iter</em> feature.
 #[cfg(feature = "iter")]
 pub trait Iter {
     fn all() -> Box<dyn Iterator<Item = (&'static str, &'static dyn Fn() -> Self)>>;
 }
 
+/// The generic error type for the crate.
 #[derive(Debug)]
 pub enum Error {
+    /// Returned when a nonexistent enum variant is requested.
     NoSuchEnum,
 }
 
