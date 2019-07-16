@@ -16,7 +16,7 @@
 
 extern crate proc_macro;
 
-macro_rules! derive {
+macro_rules! decl_derive {
     ($feature: literal: $name: ident, $fn: ident -> $mod: ident) => {
         #[cfg(feature = $feature)]
         mod $mod;
@@ -29,6 +29,6 @@ macro_rules! derive {
     }
 }
 
-derive!("name": Name, derive_name -> name);
-derive!("from_str": FromStr, derive_from_str -> from_str);
-derive!("iter": Iter, derive_iter -> iter);
+decl_derive!("name": Name, derive_name -> name);
+decl_derive!("from_str": FromStr, derive_from_str -> from_str);
+decl_derive!("iter": Iter, derive_iter -> iter);
